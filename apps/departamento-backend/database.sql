@@ -1,0 +1,53 @@
+-- Active: 1732677400333@@127.0.0.1@3306@departamento_db
+CREATE DATABASE IF NOT EXISTS departamento_db;
+
+USE departamento_db;
+
+CREATE TABLE IF NOT EXISTS usuarios (
+    id INT NOT NULL AUTO_INCREMENT,
+    nombre VARCHAR(255) NOT NULL,
+    apellido VARCHAR(255),
+    email VARCHAR(255),
+    password VARCHAR(255),
+    IS_SELLER ENUM('CLIENT', 'SELLER') NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE IF NOT EXISTS departament ( 
+    id INT NOT NULL AUTO_INCREMENT,
+    nombre VARCHAR(255) NOT NULL,
+    direccion VARCHAR(255) NOT NULL,
+    telefono VARCHAR(255),
+    rooms INT NOT NULL,
+    huesped INT NOT NULL,
+    price DECIMAL(10,2) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    PRIMARY KEY (id)
+);
+
+-- Nueva tabla para las imágenes
+CREATE TABLE IF NOT EXISTS department_images (
+    id INT NOT NULL AUTO_INCREMENT,
+    departament_id INT NOT NULL,
+    imagen LONGBLOB NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (id),
+    FOREIGN KEY (departament_id) REFERENCES departament(id) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS purchased (
+    id INT NOT NULL AUTO_INCREMENT,
+    departamento_id INT NOT NULL,
+    user_id INT NOT NULL,
+    amount DECIMAL(10,2) NOT NULL,
+    quantity INT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    PRIMARY KEY (id),
+    FOREIGN KEY (departamento_id) REFERENCES departament(id),
+    FOREIGN KEY (user_id) REFERENCES usuarios(id)
+)
+

@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: 'Inter', sans-serif;
+}
+
+.bg-palm-trees {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cpath d='M56 32c0 2-2 4-4 4s-4-2-4-4 2-4 4-4 4 2 4 4zm-28 0c0 2-2 4-4 4s-4-2-4-4 2-4 4-4 4 2 4 4zm-28 0c0 2-2 4-4 4s-4-2-4-4 2-4 4-4 4 2 4 4zm14-16c0 2-2 4-4 4s-4-2-4-4 2-4 4-4 4 2 4 4zm28 0c0 2-2 4-4 4s-4-2-4-4 2-4 4-4 4 2 4 4zm-14-16c0 2-2 4-4 4s-4-2-4-4 2-4 4-4 4 2 4 4zm28 0c0 2-2 4-4 4s-4-2-4-4 2-4 4-4 4 2 4 4zm-28 32c0 2-2 4-4 4s-4-2-4-4 2-4 4-4 4 2 4 4zm28 0c0 2-2 4-4 4s-4-2-4-4 2-4 4-4 4 2 4 4z' fill='%23000000' fill-opacity='0.05'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+}
+
+@layer base {
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold text-gray-900;
+  }
+  
+  a {
+    @apply text-blue-600 hover:text-blue-800 transition-colors duration-300;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply px-4 py-2 rounded-md font-semibold transition-colors duration-300;
+  }
+  
+  .btn-primary {
+    @apply bg-blue-600 text-white hover:bg-blue-700;
+  }
+}
+
